@@ -5,35 +5,24 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Gender</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
+            <tr *ngFor="let user of users; let i = index">
+                <th scope="row">{{ i }}</th>
+                <td>{{ user.id }}</td>
                 <td>
                     <a
-                        routerLink="a-details"
+                        routerLink="{{ user.id }}"
                         routerLinkActive="active"
                         ariaCurrentWhenActive="page"
-                        >Mark</a
+                        >{{ user.firstName }} {{ user.lastName }}</a
                     >
                 </td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
+                <td>{{ user.gender }}</td>
             </tr>
         </tbody>
     </table>

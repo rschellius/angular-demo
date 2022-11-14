@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { User } from "../component-a.model";
+import { ComponentAService } from "../component-a.service";
 
 @Component({
     selector: "app-a-list",
@@ -6,7 +8,13 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./a-list.component.css"],
 })
 export class AListComponent implements OnInit {
-    constructor() {}
+    users: User[] | undefined;
 
-    ngOnInit(): void {}
+    constructor(private aService: ComponentAService) {}
+
+    ngOnInit(): void {
+        // haal de users/entities via de service op
+        this.users = this.aService.getAllUsers();
+        console.log(this.users.length + " users found.");
+    }
 }
