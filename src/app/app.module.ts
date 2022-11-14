@@ -9,6 +9,7 @@ import { AListComponent } from "./features/component-a/a-list/a-list.component";
 import { BListComponent } from "./features/component-b/b-list/b-list.component";
 import { AColumnsComponent } from "./features/component-a/a-columns.component";
 import { ADetailsComponent } from './features/component-a/a-details/a-details.component';
+import { AEditComponent } from './features/component-a/a-edit/a-edit.component';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { ADetailsComponent } from './features/component-a/a-details/a-details.co
         BListComponent,
         AColumnsComponent,
         ADetailsComponent,
+        AEditComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, NgbModule],
     providers: [],
