@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { User } from "../component-a.model";
 import { ComponentAService } from "../component-a.service";
 
@@ -7,7 +7,7 @@ import { ComponentAService } from "../component-a.service";
     templateUrl: "./a-list.component.html",
     styleUrls: ["./a-list.component.css"],
 })
-export class AListComponent implements OnInit {
+export class AListComponent implements OnInit, OnDestroy {
     users: User[] | undefined;
 
     constructor(private aService: ComponentAService) {}
@@ -16,5 +16,9 @@ export class AListComponent implements OnInit {
         // haal de users/entities via de service op
         this.users = this.aService.getAllUsers();
         console.log(this.users.length + " users found.");
+    }
+
+    ngOnDestroy(): void {
+        console.log("AListComponent.ngOnDestroy");
     }
 }

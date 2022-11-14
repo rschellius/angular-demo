@@ -39,4 +39,8 @@ export class ComponentAService {
     getAllUsers(): User[] {
         return this.users;
     }
+
+    getUserById(id: string): User {
+        return this.users.filter((user: User) => user.id === id)[0];
+    }
 }

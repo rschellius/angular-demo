@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { User } from "../component-a.model";
+import { ComponentAService } from "../component-a.service";
 
 @Component({
     selector: "app-a-details",
@@ -8,8 +10,13 @@ import { ActivatedRoute, Router } from "@angular/router";
 })
 export class ADetailsComponent implements OnInit {
     componentId: string | null | undefined;
+    user: User | undefined;
 
-    constructor(private route: ActivatedRoute, private router: Router) {}
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private userService: ComponentAService
+    ) {}
 
     ngOnInit(): void {
         /**
@@ -24,6 +31,7 @@ export class ADetailsComponent implements OnInit {
             if (this.componentId) {
                 // Bestaande user
                 console.log("Bestaande component");
+                this.user = this.userService.getUserById(this.componentId);
             } else {
                 // Nieuwe user
                 console.log("Nieuwe component");
