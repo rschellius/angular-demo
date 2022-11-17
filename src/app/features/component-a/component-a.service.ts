@@ -43,4 +43,8 @@ export class ComponentAService {
     getUserById(id: string): User {
         return this.users.filter((user: User) => user.id === id)[0];
     }
+
+    addUser(user: User): void {
+        this.users.push(user);
+    }
 }

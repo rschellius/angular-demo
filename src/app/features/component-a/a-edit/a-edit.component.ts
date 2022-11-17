@@ -1,5 +1,8 @@
+import { generateForwardRef } from "@angular/compiler/src/render3/util";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { User, Gender } from "../component-a.model";
+import { ComponentAService } from "../component-a.service";
 
 @Component({
     selector: "app-a-edit",
@@ -9,8 +12,13 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class AEditComponent implements OnInit {
     componentId: string | null | undefined;
     componentExists: boolean = false;
+    user: User | undefined;
 
-    constructor(private route: ActivatedRoute, private router: Router) {}
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private userService: ComponentAService
+    ) {}
 
     ngOnInit(): void {
         /**
@@ -26,11 +34,37 @@ export class AEditComponent implements OnInit {
                 // Bestaande user
                 console.log("Bestaande component");
                 this.componentExists = true;
+                // Haal de bestaande user uit het array
+                this.user = {
+                    ...this.userService.getUserById(this.componentId),
+                };
             } else {
                 // Nieuwe user
                 console.log("Nieuwe component");
                 this.componentExists = false;
+                // Geen bestaande user, dus nieuw leeg object maken.
+                this.user = {
+                    id: undefined,
+                    firstName: "",
+                    lastName: "",
+                    emailAddress: "",
+                    birthDate: new Date(),
+                    gender: Gender.unknown,
+                };
             }
         });
+    }
+
+    onSubmit() {
+        console.log("Submitting the form");
+        // User toevoegen aan UserArray.
+        if (this.componentExists) {
+            // Update bestaande entry in arraylist
+            // this.userService.updateUser(this.user)
+        } else {
+            // Create new entry
+            this.userService.addUser(this.user!);
+            this.router.navigate([".."]);
+        }
     }
 }
