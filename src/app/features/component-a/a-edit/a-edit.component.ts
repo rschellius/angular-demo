@@ -13,6 +13,7 @@ export class AEditComponent implements OnInit {
     componentId: string | null | undefined;
     componentExists: boolean = false;
     user: User | undefined;
+    userName: string | undefined; // lokale kopie van username, voor page titel.
 
     constructor(
         private route: ActivatedRoute,
@@ -34,10 +35,12 @@ export class AEditComponent implements OnInit {
                 // Bestaande user
                 console.log("Bestaande component");
                 this.componentExists = true;
-                // Haal de bestaande user uit het array
+                // Haal de bestaande user uit het array.
+                // We maken hier een kopie van het oorspronkelijk object!
                 this.user = {
                     ...this.userService.getUserById(this.componentId),
                 };
+                this.userName = this.user.firstName + " " + this.user.lastName;
             } else {
                 // Nieuwe user
                 console.log("Nieuwe component");
@@ -60,7 +63,8 @@ export class AEditComponent implements OnInit {
         // User toevoegen aan UserArray.
         if (this.componentExists) {
             // Update bestaande entry in arraylist
-            // this.userService.updateUser(this.user)
+            this.userService.updateUser(this.user!);
+            this.router.navigate([".."]);
         } else {
             // Create new entry
             this.userService.addUser(this.user!);

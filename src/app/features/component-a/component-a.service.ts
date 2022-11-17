@@ -44,7 +44,19 @@ export class ComponentAService {
         return this.users.filter((user: User) => user.id === id)[0];
     }
 
-    addUser(user: User): void {
-        this.users.push(user);
+    addUser(newUser: User): void {
+        this.users.push(newUser);
+    }
+
+    updateUser(updatedUser: User) {
+        console.log("Updating user " + updatedUser.firstName);
+
+        let updatedUsers = this.users.filter(
+            (user) => user.id !== updatedUser.id
+        );
+        updatedUsers.push(updatedUser);
+        this.users = updatedUsers;
+
+        console.log(this.users);
     }
 }

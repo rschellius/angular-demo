@@ -1,5 +1,5 @@
-<div *ngIf="componentExists">
-    <h1>Editing component {{ componentId }}</h1>
+<div *ngIf="componentExists && user">
+    <h1>Editing {{ userName }}</h1>
 </div>
 <div *ngIf="!componentExists">
     <h1>Creating new User</h1>
@@ -21,7 +21,9 @@
                     #firstname="ngModel"
                     minlength="3"
                     required
-                    [ngClass]="{ 'is-invalid': firstname.invalid }"
+                    [ngClass]="{
+                        'is-invalid': firstname.invalid && firstname.touched
+                    }"
                 />
                 <div
                     *ngIf="firstname.invalid && firstname.touched"
@@ -48,7 +50,9 @@
                     #lastname="ngModel"
                     minlength="3"
                     required
-                    [ngClass]="{ 'is-invalid': lastname.invalid }"
+                    [ngClass]="{
+                        'is-invalid': lastname.invalid && lastname.touched
+                    }"
                 />
                 <div
                     *ngIf="lastname.invalid && lastname.touched"
