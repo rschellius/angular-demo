@@ -5,6 +5,7 @@ import { ADetailsComponent } from "./features/component-a/a-details/a-details.co
 import { AEditComponent } from "./features/component-a/a-edit/a-edit.component";
 import { AListComponent } from "./features/component-a/a-list/a-list.component";
 import { BListComponent } from "./features/component-b/b-list/b-list.component";
+import { RandomuserListComponent } from "./features/randomuser/randomuser-list/randomuser-list.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "component-a", pathMatch: "full" },
@@ -25,6 +26,11 @@ const routes: Routes = [
         path: "a-columns",
         component: AColumnsComponent,
         children: [{ path: "a-details", component: ADetailsComponent }],
+    },
+    {
+        path: "randomuser",
+        pathMatch: "full",
+        component: RandomuserListComponent,
     },
 ];
 

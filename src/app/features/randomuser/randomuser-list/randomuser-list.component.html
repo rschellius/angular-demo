@@ -1,0 +1,32 @@
+<div class="a-component">
+    <div class="row">
+        <div class="col">
+            <h1>Random User List</h1>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of randomUsers$ | async">
+                <th scope="row">
+                    <!-- Picture -->
+                    <img src="{{ user.picture.medium }}" alt="" />
+                </th>
+                <td>
+                    {{ user.name.title }} {{ user.name.first }}
+                    {{ user.name.last }}
+                </td>
+                <td>
+                    {{ user.email }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

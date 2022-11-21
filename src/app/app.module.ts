@@ -11,6 +11,8 @@ import { AColumnsComponent } from "./features/component-a/a-columns.component";
 import { ADetailsComponent } from "./features/component-a/a-details/a-details.component";
 import { AEditComponent } from "./features/component-a/a-edit/a-edit.component";
 import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { RandomuserListComponent } from './features/randomuser/randomuser-list/randomuser-list.component';
 
 @NgModule({
     declarations: [
@@ -22,8 +24,15 @@ import { FormsModule } from "@angular/forms";
         AColumnsComponent,
         ADetailsComponent,
         AEditComponent,
+        RandomuserListComponent,
     ],
-    imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        FormsModule,
+        HttpClientModule,
+    ],
     providers: [],
     bootstrap: [AppComponent],
 })
